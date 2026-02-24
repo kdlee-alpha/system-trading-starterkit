@@ -15,7 +15,9 @@ from trading_bot.execution.position_tracker import PositionTracker
 from trading_bot.execution.risk_manager import RiskManager
 from trading_bot.notification.telegram_notifier import TelegramNotifier
 from trading_bot.scheduler.scheduler import TradingScheduler
-from trading_bot.strategy.rsi_strategy import RSIStrategy
+from trading_bot.strategy.golden_cross_of_moving_average_strategy import (
+    GoldenCrossOfMovingAverageStrategy,
+)
 from trading_bot.utils.logger import setup_logger
 
 
@@ -66,7 +68,7 @@ async def main() -> None:
             trade_repo=trade_repo,
         )
         notifier = TelegramNotifier()
-        strategy = RSIStrategy()
+        strategy = GoldenCrossOfMovingAverageStrategy()
 
         # 감시 종목 목록 (추후 설정으로 분리 가능)
         symbols = ["005930", "000660", "035420"]  # 삼성전자, SK하이닉스, NAVER
