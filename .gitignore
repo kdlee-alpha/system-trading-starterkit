@@ -62,3 +62,6 @@ logs/
 # 타입 체커 캐시
 .mypy_cache/
 .pyright/
+
+# Claude Code 로컬 설정
+.claude/settings.local.json
