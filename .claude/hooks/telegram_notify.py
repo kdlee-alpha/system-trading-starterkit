@@ -9,6 +9,7 @@ Claude Code 훅 → 텔레그램 알림 스크립트
 
 import json
 import os
+import subprocess
 import sys
 import urllib.request
 from pathlib import Path
@@ -118,7 +119,20 @@ def main() -> None:
     except (json.JSONDecodeError, ValueError):
         data = {}
 
-# 텔레그램 설정 로드
+    # # jq로 훅 데이터 출력 (디버깅용)
+    # if raw.strip():
+    #     try:
+    #         subprocess.run(["jq", "."], input=raw, text=True, check=False, stdout=sys.stderr)
+    #     except FileNotFoundError:
+    #         pass  # jq 미설치 시 무시
+
+    # # 훅 데이터를 test.txt에 기록 (디버깅용)
+    # if raw.strip():
+    #     log_path = Path(__file__).parent.parent.parent / "test.txt"
+    #     with log_path.open("a", encoding="utf-8") as f:
+    #         f.write(f"[{event_type}]\n{raw}\n\n")
+
+    # 텔레그램 설정 로드
     config = get_telegram_config()
     if config is None:
         # 설정 없으면 조용히 종료
